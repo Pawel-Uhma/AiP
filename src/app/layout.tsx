@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
-import { Poppins, Lora, Dancing_Script, Monsieur_La_Doulaise, Bodoni_Moda, Licorice, Italianno, Parisienne, Alex_Brush, Pinyon_Script } from "next/font/google";
+import { Poppins, Lora, Dancing_Script, Monsieur_La_Doulaise, Bodoni_Moda, Licorice, Italianno, Parisienne, Alex_Brush, Pinyon_Script, Mrs_Saint_Delafield } from "next/font/google";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 
 const poppins = Poppins({ 
@@ -61,6 +61,12 @@ const pinyonScript = Pinyon_Script({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-pinyon-script",
+});
+
+const mrsSaintDelafield = Mrs_Saint_Delafield({ 
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-mrs-saint-delafield",
   display: "swap"
 });
 
@@ -89,7 +95,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} ${lora.variable} ${monsieurLaDoulaise.variable} ${bodoniModa.variable} ${licorice.variable} ${italianno.variable} ${parisienne.variable} ${alexBrush.variable} ${pinyonScript.variable} antialiased`}>
+      <body className={`${poppins.className} ${lora.variable} ${monsieurLaDoulaise.variable} ${bodoniModa.variable} ${licorice.variable} ${italianno.variable} ${parisienne.variable} ${alexBrush.variable} ${pinyonScript.variable} ${mrsSaintDelafield.variable} antialiased`}>
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>

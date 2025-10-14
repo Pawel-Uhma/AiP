@@ -98,6 +98,7 @@ const config: Config = {
         parisienne: ["var(--font-parisienne)", "cursive"],
         alexBrush: ["var(--font-alex-brush)", "cursive"],
         pinyonScript: ["var(--font-pinyon-script)", "cursive"],
+        mrsSaintDelafield: ["var(--font-mrs-saint-delafield)", "cursive"],
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",

@@ -55,9 +55,9 @@ export function HeroSection() {
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="absolute top-30 sm:top-20 md:top-24 lg:top-32 left-1/2 transform -translate-x-1/2 z-10 text-center"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center"
       >
-        <h1 className="font-monsieur">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl text-white whitespace-nowrap" style={{ fontFamily: 'var(--font-mrs-saint-delafield)' }}>
           Amelia & Paweł
         </h1>
       </motion.div>

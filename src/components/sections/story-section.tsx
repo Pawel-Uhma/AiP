@@ -6,7 +6,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const TOTAL_FRAMES = 42;
+const TOTAL_FRAMES = 93;
 
 export function StorySection() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -20,7 +20,7 @@ export function StorySection() {
 
     for (let i = 1; i <= TOTAL_FRAMES; i++) {
       const img = new Image();
-      img.src = `/videos/envelope/ezgif-frame-${String(i).padStart(3, "0")}.png`;
+      img.src = `/videos/envelope/frame_${String(i).padStart(5, "0")}.png`;
       
       img.onload = () => {
         loadedCount++;
@@ -129,8 +129,8 @@ export function StorySection() {
     <section
       ref={containerRef}
       id="story"
-      className="relative bg-amber-900"
-      style={{ height: "300vh" }}
+      className="relative"
+      style={{ height: "300vh", backgroundColor: "#33401c" }}
     >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center">
         <canvas
