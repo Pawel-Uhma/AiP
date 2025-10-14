@@ -170,7 +170,7 @@ export function StorySection() {
       ref={containerRef}
       id="story"
       className="relative"
-      style={{ height: "300vh", backgroundColor: "#33401c" }}
+      style={{ height: "300vh", backgroundColor: "#ffffff" }}
     >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center">
         {isLoading && (
@@ -183,7 +183,7 @@ export function StorySection() {
         )}
         <canvas
           ref={canvasRef}
-          className="w-full h-full"
+          className="w-[80%] h-[80%] translate-y-12"
           style={{ opacity: isLoading ? 0 : 1, transition: "opacity 0.3s" }}
         />
       </div>
