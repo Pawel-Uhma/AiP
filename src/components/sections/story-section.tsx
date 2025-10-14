@@ -7,35 +7,70 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const TOTAL_FRAMES = 93;
+const BATCH_SIZE = 15; // Load frames in batches
 
 export function StorySection() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [images, setImages] = useState<HTMLImageElement[]>([]);
+  const [images, setImages] = useState<(HTMLImageElement | null)[]>(
+    Array(TOTAL_FRAMES).fill(null)
+  );
+  const [isLoading, setIsLoading] = useState(true);
+  const loadedFrames = useRef<Set<number>>(new Set());
 
-  // Preload all frame images
-  useEffect(() => {
-    const frameImages: HTMLImageElement[] = [];
-    let loadedCount = 0;
+  // Load a specific frame
+  const loadFrame = (index: number) => {
+    if (loadedFrames.current.has(index)) return Promise.resolve();
 
-    for (let i = 1; i <= TOTAL_FRAMES; i++) {
+    return new Promise<void>((resolve) => {
       const img = new Image();
-      img.src = `/videos/envelope/frame_${String(i).padStart(5, "0")}.png`;
+      img.src = `/videos/envelope/frame_${String(index + 1).padStart(5, "0")}.png`;
       
       img.onload = () => {
-        loadedCount++;
-        if (loadedCount === TOTAL_FRAMES) {
-          setImages(frameImages);
-        }
+        setImages((prev) => {
+          const newImages = [...prev];
+          newImages[index] = img;
+          return newImages;
+        });
+        loadedFrames.current.add(index);
+        resolve();
       };
-      
-      frameImages.push(img);
-    }
+
+      img.onerror = () => {
+        console.error(`Failed to load frame ${index}`);
+        resolve();
+      };
+    });
+  };
+
+  // Progressive loading strategy
+  useEffect(() => {
+    const loadFrames = async () => {
+      // Load first frame immediately for initial render
+      await loadFrame(0);
+      setIsLoading(false);
+
+      // Load frames in batches
+      const loadBatch = async (startIndex: number) => {
+        const promises = [];
+        for (let i = startIndex; i < Math.min(startIndex + BATCH_SIZE, TOTAL_FRAMES); i++) {
+          promises.push(loadFrame(i));
+        }
+        await Promise.all(promises);
+      };
+
+      // Load remaining frames in background
+      for (let i = 1; i < TOTAL_FRAMES; i += BATCH_SIZE) {
+        await loadBatch(i);
+      }
+    };
+
+    loadFrames();
   }, []);
 
   // Setup canvas and ScrollTrigger
   useEffect(() => {
-    if (images.length === 0 || !canvasRef.current || !containerRef.current) return;
+    if (isLoading || !canvasRef.current || !containerRef.current) return;
 
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
@@ -83,6 +118,11 @@ export function StorySection() {
         }
         
         context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+      } else {
+        // Load frame on demand if not loaded yet
+        if (!loadedFrames.current.has(frameIndex)) {
+          loadFrame(frameIndex);
+        }
       }
     };
 
@@ -123,7 +163,7 @@ export function StorySection() {
       window.removeEventListener("resize", handleResize);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, [images]);
+  }, [images, isLoading]);
 
   return (
     <section
@@ -133,9 +173,18 @@ export function StorySection() {
       style={{ height: "300vh", backgroundColor: "#33401c" }}
     >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center">
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center text-white">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+              <p>Loading...</p>
+            </div>
+          </div>
+        )}
         <canvas
           ref={canvasRef}
           className="w-full h-full"
+          style={{ opacity: isLoading ? 0 : 1, transition: "opacity 0.3s" }}
         />
       </div>
     </section>
