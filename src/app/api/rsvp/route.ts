@@ -14,14 +14,14 @@ const rsvpSchema = z.object({
 
 // Email configuration
 const createTransporter = () => {
-  console.log('EMAIL_USER:', process.env.EMAIL_USER ? 'Set' : 'Not set');
-  console.log('EMAIL_PASS:', process.env.EMAIL_PASS ? 'Set' : 'Not set');
+  console.log('NEXT_PUBLIC_EMAIL_USER:', process.env.NEXT_PUBLIC_EMAIL_USER ? 'Set' : 'Not set');
+  console.log('NEXT_PUBLIC_EMAIL_PASS:', process.env.NEXT_PUBLIC_EMAIL_PASS ? 'Set' : 'Not set');
   
   return nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      user: process.env.NEXT_PUBLIC_EMAIL_USER,
+      pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
     },
   });
 };
@@ -45,7 +45,7 @@ const sendRSVPEmail = async (rsvpData: {
   }[rsvpData.diet] || rsvpData.diet : 'Nie podano';
   
   const mailOptions = {
-    from: process.env.EMAIL_USER || 'paweluhma136@gmail.com',
+    from: process.env.NEXT_PUBLIC_EMAIL_USER || 'paweluhma136@gmail.com',
     to: 'paweluhma136@gmail.com',
     subject: `🎉 Nowa odpowiedź RSVP - ${rsvpData.name}`,
     html: `
@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
     };
 
     // Check if environment variables are available
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    if (!process.env.NEXT_PUBLIC_EMAIL_USER || !process.env.NEXT_PUBLIC_EMAIL_PASS) {
       console.error("Missing environment variables");
       return NextResponse.json(
         { success: false, message: "Email configuration missing" },
@@ -177,8 +177,8 @@ export async function GET() {
       success: true, 
       message: "RSVP API is working",
       envCheck: {
-        emailUser: process.env.EMAIL_USER ? 'Set' : 'Not set',
-        emailPass: process.env.EMAIL_PASS ? 'Set' : 'Not set'
+        emailUser: process.env.NEXT_PUBLIC_EMAIL_USER ? 'Set' : 'Not set',
+        emailPass: process.env.NEXT_PUBLIC_EMAIL_PASS ? 'Set' : 'Not set'
       }
     },
     { status: 200 }
