@@ -90,16 +90,28 @@ const sendRSVPEmail = async (rsvpData: {
 
 export async function POST(request: NextRequest) {
   try {
+    console.log("RSVP API called");
     const body = await request.json();
+    console.log("Request body:", body);
     
     // Validate the request body
     const validatedData = rsvpSchema.parse(body);
+    console.log("Validated data:", validatedData);
     
     // Add timestamp
     const rsvpData = {
       ...validatedData,
       submittedAt: new Date().toISOString(),
     };
+
+    // Check if environment variables are available
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error("Missing environment variables");
+      return NextResponse.json(
+        { success: false, message: "Email configuration missing" },
+        { status: 500 }
+      );
+    }
 
     // Send email notification
     try {
@@ -156,5 +168,20 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+// Test endpoint to check if API is working
+export async function GET() {
+  return NextResponse.json(
+    { 
+      success: true, 
+      message: "RSVP API is working",
+      envCheck: {
+        emailUser: process.env.EMAIL_USER ? 'Set' : 'Not set',
+        emailPass: process.env.EMAIL_PASS ? 'Set' : 'Not set'
+      }
+    },
+    { status: 200 }
+  );
 }
 
