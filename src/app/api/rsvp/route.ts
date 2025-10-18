@@ -14,6 +14,9 @@ const rsvpSchema = z.object({
 
 // Email configuration
 const createTransporter = () => {
+  console.log('EMAIL_USER:', process.env.EMAIL_USER ? 'Set' : 'Not set');
+  console.log('EMAIL_PASS:', process.env.EMAIL_PASS ? 'Set' : 'Not set');
+  
   return nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -104,8 +107,12 @@ export async function POST(request: NextRequest) {
       console.log("RSVP email sent successfully");
     } catch (error) {
       console.error("Email sending error:", error);
+      console.error("Error details:", {
+        message: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined
+      });
       return NextResponse.json(
-        { success: false, message: "Failed to send email" },
+        { success: false, message: "Failed to send email", error: error instanceof Error ? error.message : 'Unknown error' },
         { status: 500 }
       );
     }
