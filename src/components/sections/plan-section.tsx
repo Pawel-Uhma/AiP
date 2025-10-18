@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export function PlanSection() {
   return (
@@ -8,10 +9,12 @@ export function PlanSection() {
       {/* Background Image Container */}
       <div className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-0">
         <div className="relative w-full h-full max-h-[600px] sm:max-h-[600px] md:max-h-none lg:max-h-none">
-          <img
+          <Image
             src="/images/plan/background.png"
             alt="Wedding plan background"
-            className="w-full h-full object-cover object-center"
+            fill
+            className="object-cover object-center"
+            priority
           />
           
           {/* Church Ceremony - Top Left */}

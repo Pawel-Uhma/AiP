@@ -24,7 +24,15 @@ const createTransporter = () => {
   });
 };
 
-const sendRSVPEmail = async (rsvpData: any) => {
+const sendRSVPEmail = async (rsvpData: {
+  name: string;
+  email: string;
+  attendance: string;
+  diet?: string;
+  allergies?: string;
+  message?: string;
+  submittedAt: string;
+}) => {
   const transporter = createTransporter();
   
   const attendanceText = rsvpData.attendance === 'yes' ? 'TAK' : 'NIE';

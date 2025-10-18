@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
-import { Poppins, Lora, Dancing_Script, Monsieur_La_Doulaise, Bodoni_Moda, Licorice, Italianno, Parisienne, Alex_Brush, Pinyon_Script, Mrs_Saint_Delafield } from "next/font/google";
+import { Poppins, Lora, Monsieur_La_Doulaise, Bodoni_Moda, Licorice, Italianno, Parisienne, Alex_Brush, Pinyon_Script, Mrs_Saint_Delafield } from "next/font/google";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 
 const poppins = Poppins({ 
