@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +18,13 @@ export function StorySection() {
   );
   const [isLoading, setIsLoading] = useState(true);
   const loadedFrames = useRef<Set<number>>(new Set());
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // Load a specific frame
   const loadFrame = (index: number) => {
@@ -190,6 +198,56 @@ export function StorySection() {
           className="w-[80%] h-[80%] translate-y-12"
           style={{ opacity: isLoading ? 0 : 1, transition: "opacity 0.3s" }}
         />
+        
+        {/* Clickable Squares */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+          <div className="relative w-full h-full max-w-4xl max-h-4xl">
+            {/* Red Square - Top Left */}
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.2, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              whileHover={{ opacity: 0.4, scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                scrollToSection('red-section');
+              }}
+              className="absolute top-[23%] right-[22%] w-60 h-80  rounded-lg pointer-events-auto cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 z-30"
+            />
+            
+            {/* Blue Square - Top Right */}
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.2, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              whileHover={{ opacity: 0.4, scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                scrollToSection('blue-section');
+              }}
+              className="absolute top-[30%] left-[20%] w-70 h-100  rounded-lg pointer-events-auto cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 z-30"
+            />
+            
+            {/* Green Square - Bottom Center */}
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.2, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              whileHover={{ opacity: 0.4, scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                scrollToSection('green-section');
+              }}
+              className="absolute bottom-[36%] left-[50%] transform  w-55 h-50  rounded-lg pointer-events-auto cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 z-30"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );
