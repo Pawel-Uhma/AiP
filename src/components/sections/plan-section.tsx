@@ -8,7 +8,7 @@ export function PlanSection() {
     <section id="plan" className="relative min-h-[80vh]">
       {/* Background Image Container */}
       <div className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-0">
-        <div className="relative w-full h-full max-h-[600px] sm:max-h-[600px] md:max-h-none lg:max-h-none">
+        <div className="relative w-full h-full max-h-[600px] sm:max-h-[600px] md:max-h-[700px] lg:max-h-none">
           <Image
             src="/images/plan/background.png"
             alt="Wedding plan background"
