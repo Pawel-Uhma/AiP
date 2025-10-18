@@ -3,54 +3,48 @@
 import { motion } from "framer-motion";
 
 const backgroundImages = [
-  "/images/hero/background/DSC_5553.jpg",
-  "/images/hero/background/DSC_5562.jpg",
-  "/images/hero/background/DSC_5586.jpg",
-  "/images/hero/background/DSC_5590.jpg",
-  "/images/hero/background/DSC_5613.jpg",
-  "/images/hero/background/DSC_5628.jpg",
-  "/images/hero/background/DSC_5692.jpg",
-  "/images/hero/background/DSC_5697.jpg",
-  "/images/hero/background/DSC_5775.jpg",
-  "/images/hero/background/DSC_6009.jpg",
-  "/images/hero/background/DSC_6025.jpg",
-  "/images/hero/background/DSC_6048.jpg",
-  "/images/hero/background/DSC_6136.jpg",
+  "/images/hero/background/DSC_5553.avif",
+  "/images/hero/background/DSC_5562.avif",
+  "/images/hero/background/DSC_5586.avif",
+  "/images/hero/background/DSC_5590.avif",
+  "/images/hero/background/DSC_5613.avif",
+  "/images/hero/background/DSC_5628.avif",
+  "/images/hero/background/DSC_5692.avif",
+  "/images/hero/background/DSC_5697.avif",
+  "/images/hero/background/DSC_5775.avif",
+  "/images/hero/background/DSC_6009.avif",
+  "/images/hero/background/DSC_6025.avif",
+  "/images/hero/background/DSC_6048.avif",
+  "/images/hero/background/DSC_6136.avif",
 ];
 
 export function HeroSection() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Moving Image Background */}
-      <div className="absolute inset-0 w-full h-full">
-        <motion.div
-          className="flex h-full"
-          animate={{
-            x: [0, -100 * backgroundImages.length + "%"],
-          }}
-          transition={{
-            x: {
-              duration: 60,
-              repeat: Infinity,
-              ease: "linear",
-            },
-          }}
-        >
-          {/* Render images twice for seamless loop */}
-          {[...backgroundImages, ...backgroundImages].map((src, index) => (
-            <img
-              key={index}
-              src={src}
-              alt={`Wedding photo ${index + 1}`}
-              className="h-full w-auto object-cover flex-shrink-0"
-            />
-          ))}
-        </motion.div>
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/50" />
-      </div>
+    <section id="hero" className="relative min-h-screen flex items-center justify-center">
+      {/* CSS Animated Background */}
+      <div 
+        className="absolute inset-0 w-full h-full overflow-hidden"
+        style={{
+          backgroundImage: `url(${backgroundImages[0]})`,
+          backgroundRepeat: 'repeat-x',
+          backgroundSize: 'auto 100%',
+          backgroundPosition: '0 0',
+          animation: 'scroll 65s linear infinite',
+          willChange: 'background-position'
+        }}
+      />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/50" />
+      
+      {/* CSS Keyframes */}
+      <style jsx>{`
+        @keyframes scroll {
+          from { background-position-x: 0; }
+          to { background-position-x: -${backgroundImages.length * 100}%; }
+        }
+      `}</style>
 
-      {/* Main Title - Absolutely Positioned */}
+      {/* Main Title */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -62,7 +56,7 @@ export function HeroSection() {
         </h1>
       </motion.div>
 
-      {/* Date - Centered */}
+      {/* Date */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}

@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 
 export function PlanSection() {
   return (
-    <section id="plan" className="relative min-h-[80vh] overflow-hidden">
+    <section id="plan" className="relative min-h-[80vh]">
       {/* Background Image Container */}
       <div className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-0">
-        <div className="relative h-[100vh] max-h-[600px] md:max-h-[900px] lg:max-h-[1000px]">
+        <div className="relative w-full h-full max-h-[600px] sm:max-h-[600px] md:max-h-none lg:max-h-none">
           <img
             src="/images/plan/background.png"
             alt="Wedding plan background"
@@ -22,12 +22,12 @@ export function PlanSection() {
             viewport={{ once: false, amount: 0.3 }}
             className="absolute top-[15%] left-[15%] md:left-[20%] lg:left-[25%] xl:left-[30%] z-10"
           >
-            <div className=" backdrop-blur-sm rounded-lg p-4 shadow-lg">
-              <div className="text-2xl font-bold text-amber-800 mb-1">
+            <div className=" backdrop-blur-sm rounded-lg p-4 shadow-lg text-center">
+              <div className="text-2xl lg:text-3xl xl:text-4xl font-bold text-amber-800 mb-1">
                 15:30 - 16:30
               </div>
-              <div className="text-lg text-amber-700 font-medium">
-                PARAFIA MATKI BOŻEJ<br />
+              <div className="text-lg lg:text-xl xl:text-2xl text-amber-700 font-medium">
+                PARAFIA PW. MATKI BOŻEJ<br />
                 KRÓLOWEJ POLSKI
               </div>
             </div>
@@ -39,13 +39,13 @@ export function PlanSection() {
             whileInView={{ opacity: 1, x: 0, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: false, amount: 0.3 }}
-            className="absolute bottom-[15%] right-[15%] md:right-[20%] lg:right-[25%] xl:right-[30%] z-10"
+            className="absolute bottom-[7%] right-[15%] md:right-[20%] md:bottom-[10%] lg:right-[25%] xl:right-[30%] z-10"
           >
-            <div className=" backdrop-blur-sm rounded-lg p-4 shadow-lg">
-              <div className="text-2xl font-bold text-amber-800 mb-1">
+            <div className=" backdrop-blur-sm rounded-lg p-4 shadow-lg text-center">
+              <div className="text-2xl lg:text-3xl xl:text-4xl font-bold text-amber-800 mb-1">
                 17:30
               </div>
-              <div className="text-lg text-amber-700 font-medium">
+              <div className="text-lg lg:text-xl xl:text-2xl text-amber-700 font-medium">
                 STODOŁA RASZTÓW
               </div>
             </div>

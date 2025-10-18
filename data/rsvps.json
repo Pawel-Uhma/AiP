@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Banan Mały",
+    "email": "mirabelka1343@gmail.com",
+    "attendance": "yes",
+    "diet": "vegetarian",
+    "allergies": "gluten",
+    "message": "elooo",
+    "submittedAt": "2025-10-18T07:44:06.503Z",
+    "id": "1760773446503"
+  },
+  {
+    "name": "b m",
+    "email": "mirabelka1343@gmail.com",
+    "attendance": "yes",
+    "diet": "vegan",
+    "allergies": "as",
+    "message": "asset",
+    "submittedAt": "2025-10-18T07:45:20.489Z",
+    "id": "1760773520489"
+  },
+  {
+    "name": "Banan Maly",
+    "email": "mirabelka1343@gmail.com",
+    "attendance": "yes",
+    "diet": "vegetarian",
+    "allergies": "gluten",
+    "message": "dupa",
+    "submittedAt": "2025-10-18T08:04:21.697Z",
+    "id": "1760774661697"
+  }
+]

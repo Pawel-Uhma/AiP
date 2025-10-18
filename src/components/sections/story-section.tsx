@@ -80,10 +80,12 @@ export function StorySection() {
 
     // Set canvas size
     const scale = window.devicePixelRatio || 1;
-    canvas.width = window.innerWidth * scale;
-    canvas.height = window.innerHeight * scale;
-    canvas.style.width = `${window.innerWidth}px`;
-    canvas.style.height = `${window.innerHeight}px`;
+    const containerWidth = container.clientWidth;
+    const containerHeight = container.clientHeight;
+    canvas.width = containerWidth * scale;
+    canvas.height = containerHeight * scale;
+    canvas.style.width = `${containerWidth}px`;
+    canvas.style.height = `${containerHeight}px`;
 
     // Scale context to account for device pixel ratio
     context.scale(scale, scale);
@@ -98,8 +100,8 @@ export function StorySection() {
         context.clearRect(0, 0, canvas.width, canvas.height);
         
         // Calculate dimensions to maintain aspect ratio (contain)
-        const canvasWidth = window.innerWidth;
-        const canvasHeight = window.innerHeight;
+        const canvasWidth = containerWidth;
+        const canvasHeight = containerHeight;
         const imgRatio = img.width / img.height;
         const canvasRatio = canvasWidth / canvasHeight;
         
@@ -149,10 +151,12 @@ export function StorySection() {
     // Handle window resize
     const handleResize = () => {
       const scale = window.devicePixelRatio || 1;
-      canvas.width = window.innerWidth * scale;
-      canvas.height = window.innerHeight * scale;
-      canvas.style.width = `${window.innerWidth}px`;
-      canvas.style.height = `${window.innerHeight}px`;
+      const newContainerWidth = container.clientWidth;
+      const newContainerHeight = container.clientHeight;
+      canvas.width = newContainerWidth * scale;
+      canvas.height = newContainerHeight * scale;
+      canvas.style.width = `${newContainerWidth}px`;
+      canvas.style.height = `${newContainerHeight}px`;
       context.scale(scale, scale);
       render();
     };
