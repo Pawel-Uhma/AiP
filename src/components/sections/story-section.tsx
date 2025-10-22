@@ -27,6 +27,7 @@ export function StorySection() {
   );
   const [isLoading, setIsLoading] = useState(true);
   const [showColorDivs, setShowColorDivs] = useState(false);
+  const [squaresClickable, setSquaresClickable] = useState(false);
   const loadedFrames = useRef<Set<number>>(new Set());
 
   const scrollToSection = (sectionId: string) => {
@@ -273,7 +274,10 @@ export function StorySection() {
         // Show divs when reaching the target position (where last frame shows)
         const targetPosition = container.offsetTop + (containerHeight * 0.67);
         
-        setShowColorDivs(scrollY >= targetPosition-3000);
+        const OFFSET = 2200;
+        setShowColorDivs(scrollY >= targetPosition-OFFSET);
+        // Make squares clickable only when reaching the actual target position
+        setSquaresClickable(scrollY >= targetPosition-OFFSET);
       }
     };
 
@@ -321,14 +325,15 @@ export function StorySection() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 0.2, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.5 }}
-                  whileHover={{ opacity: 0.4, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ opacity: squaresClickable ? 0.4 : 0.2, scale: squaresClickable ? 1.05 : 1 }}
+                  whileTap={{ scale: squaresClickable ? 0.95 : 1 }}
                   onClick={(e) => {
+                    if (!squaresClickable) return;
                     e.preventDefault();
                     e.stopPropagation();
                     scrollToSection('red-section');
                   }}
-                  className="absolute bottom-[50%] left-[50%] w-80 h-120 bg-transparent pointer-events-auto cursor-pointer "
+                  className={`bg-red-500 absolute bottom-[50%] left-[50%] w-80 h-120  ${squaresClickable ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none cursor-default'}`}
                 />
                 
                 {/* Blue Square - Top Right */}
@@ -336,14 +341,15 @@ export function StorySection() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 0.2, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.7 }}
-                  whileHover={{ opacity: 0.4, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ opacity: squaresClickable ? 0.4 : 0.2, scale: squaresClickable ? 1.05 : 1 }}
+                  whileTap={{ scale: squaresClickable ? 0.95 : 1 }}
                   onClick={(e) => {
+                    if (!squaresClickable) return;
                     e.preventDefault();
                     e.stopPropagation();
                     scrollToSection('blue-section');
                   }}
-                  className="absolute top-[30%] left-[20%] w-70 h-100 bg-transparent  pointer-events-auto cursor-pointer"
+                  className={`bg-blue-500 absolute top-[30%] left-[20%] w-70 h-100  ${squaresClickable ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none cursor-default'}`}
                 />
                 
                 {/* Green Square - Bottom Center */}
@@ -351,14 +357,15 @@ export function StorySection() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 0.2, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.9 }}
-                  whileHover={{ opacity: 0.4, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ opacity: squaresClickable ? 0.4 : 0.2, scale: squaresClickable ? 1.05 : 1 }}
+                  whileTap={{ scale: squaresClickable ? 0.95 : 1 }}
                   onClick={(e) => {
+                    if (!squaresClickable) return;
                     e.preventDefault();
                     e.stopPropagation();
                     scrollToSection('green-section');
                   }}
-                  className="absolute bottom-[36%] left-[50%] w-60 h-50 bg-transparent pointer-events-auto cursor-pointer "
+                  className={`bg-green-500 absolute bottom-[36%] left-[50%] w-60 h-50  ${squaresClickable ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none cursor-default'}`}
                 />
               </div>
             </div>
