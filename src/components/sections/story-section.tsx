@@ -311,7 +311,7 @@ export function StorySection() {
         <div className="relative w-full h-full flex items-center justify-center origin-center">
           <canvas
             ref={canvasRef}
-            className="w-[100%] h-[100%] md:translate-y-12 cursor-pointer"
+            className="w-[100%] h-[100%] cursor-pointer translate-y-20"
             style={{ opacity: isLoading ? 0 : 1, transition: "opacity 0.3s" }}
             onClick={scrollToLastFrame}
           />
@@ -333,7 +333,7 @@ export function StorySection() {
                     e.stopPropagation();
                     scrollToSection('red-section');
                   }}
-                  className={`bg-red-500 absolute bottom-[50%] left-[50%] w-80 h-120  ${squaresClickable ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none cursor-default'}`}
+                  className={` bottom-[50%] left-[50%] w-80 h-120  ${squaresClickable ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none cursor-default'}`}
                 />
                 
                 {/* Blue Square - Top Right */}
@@ -349,7 +349,7 @@ export function StorySection() {
                     e.stopPropagation();
                     scrollToSection('blue-section');
                   }}
-                  className={`bg-blue-500 absolute top-[30%] left-[20%] w-70 h-100  ${squaresClickable ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none cursor-default'}`}
+                  className={`absolute top-[30%] left-[20%] w-70 h-100  ${squaresClickable ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none cursor-default'}`}
                 />
                 
                 {/* Green Square - Bottom Center */}
@@ -365,7 +365,7 @@ export function StorySection() {
                     e.stopPropagation();
                     scrollToSection('green-section');
                   }}
-                  className={`bg-green-500 absolute bottom-[36%] left-[50%] w-60 h-50  ${squaresClickable ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none cursor-default'}`}
+                  className={`absolute bottom-[36%] left-[50%] w-60 h-50  ${squaresClickable ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none cursor-default'}`}
                 />
               </div>
             </div>
