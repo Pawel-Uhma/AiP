@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const backgroundImages = [
   "/images/hero/background/DSC_5553.avif",
@@ -19,28 +20,64 @@ const backgroundImages = [
 ];
 
 export function HeroSection() {
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Preload all images
+  useEffect(() => {
+    const preloadImages = async () => {
+      const promises = backgroundImages.map((src) => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = resolve; // Continue even if one fails
+          img.src = src;
+        });
+      });
+
+      await Promise.all(promises);
+      setImagesLoaded(true);
+    };
+
+    preloadImages();
+  }, []);
+
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center">
       {/* CSS Animated Background */}
-      <div 
-        className="absolute inset-0 w-full h-full overflow-hidden"
-        style={{
-          backgroundImage: `url(${backgroundImages[0]})`,
-          backgroundRepeat: 'repeat-x',
-          backgroundSize: 'auto 100%',
-          backgroundPosition: '0 0',
-          animation: 'scroll 65s linear infinite',
-          willChange: 'background-position'
-        }}
-      />
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <div 
+          className="flex h-full"
+          style={{
+            animation: imagesLoaded ? `scrollImages ${5 * backgroundImages.length}s linear infinite` : 'none',
+            willChange: 'transform',
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden'
+          }}
+        >
+          {/* Duplicate images for seamless loop */}
+          {[...backgroundImages, ...backgroundImages].map((src, index) => (
+            <img
+              key={index}
+              src={src}
+              alt={`Wedding photo ${(index % backgroundImages.length) + 1}`}
+              className="h-full w-auto object-cover flex-shrink-0"
+              style={{
+                willChange: 'transform',
+                backfaceVisibility: 'hidden',
+                transform: 'translateZ(0)'
+              }}
+            />
+          ))}
+        </div>
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
       
       {/* CSS Keyframes */}
       <style jsx>{`
-        @keyframes scroll {
-          from { background-position-x: 0; }
-          to { background-position-x: -${backgroundImages.length * 100}%; }
+        @keyframes scrollImages {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-${backgroundImages.length * 100}%); }
         }
       `}</style>
 
@@ -63,7 +100,7 @@ export function HeroSection() {
         transition={{ duration: 0.8, delay: 0.4 }}
         className="absolute bottom-32 left-1/2 transform -translate-x-1/2 z-10"
       >
-        <div className="font-bodoni text-xl sm:text-2xl lg:text-3xl text-white tracking-widest uppercase">
+        <div className="font-bodoni text-xl sm:text-2xl lg:text-3xl text-white tracking-widest uppercase flex justify-center items-center text-center">
           18 LIPIEC 2026 WARSZAWA
         </div>
       </motion.div>
