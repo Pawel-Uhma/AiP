@@ -5,55 +5,76 @@ import Image from "next/image";
 
 export function PlanSection() {
   return (
-    <section id="plan" className="relative min-h-[80vh]">
-      {/* Background Image Container */}
-      <div className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-0">
-        <div className="relative w-full h-full max-h-[600px] sm:max-h-[600px] md:max-h-[700px] lg:max-h-none">
-          <Image
-            src="/images/plan/background.png"
-            alt="Wedding plan background"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          
-          {/* Church Ceremony - Top Left */}
-          <motion.div
-            initial={{ opacity: 0, x: -100, y: 0 }}
-            whileInView={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.3 }}
-            className="absolute top-[15%] left-[15%] md:left-[20%] lg:left-[25%] xl:left-[30%] z-10"
-          >
-            <div className=" backdrop-blur-sm rounded-lg p-4 shadow-lg text-center">
-              <div className="text-2xl lg:text-3xl xl:text-4xl font-bold text-amber-800 mb-1">
+    <section id="plan" className="py-16 px-4" style={{ backgroundColor: '#FFFFFF' }}>
+      <div className="max-w-6xl mx-auto">
+        {/* First Row: Parafia text and Church image */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: false, amount: 0.3 }}
+          className="flex flex-row items-center justify-between mb-16 gap-2 sm:gap-4 lg:gap-8"
+        >
+          {/* Parafia Text */}
+          <div className="flex-1 flex items-center justify-center lg:justify-start h-[200px] lg:h-[300px]">
+            <div className="text-center lg:text-left px-4 sm:px-6 lg:px-0">
+              <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-amber-800 mb-2 lg:mb-4">
                 15:30 - 16:30
               </div>
-              <div className="text-lg lg:text-xl xl:text-2xl text-amber-700 font-medium">
+              <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-amber-700 font-medium">
                 PARAFIA PW. MATKI BOŻEJ<br />
                 KRÓLOWEJ POLSKI
               </div>
             </div>
-          </motion.div>
+          </div>
+          
+          {/* Church Image */}
+          <div className="flex-1 flex justify-center lg:justify-end h-[200px] lg:h-[300px] w-full lg:w-auto">
+            <div className="relative w-full max-w-[200px] sm:max-w-[250px] md:max-w-md lg:max-w-lg h-full">
+              <Image
+                src="/images/plan/church.png"
+                alt="Church"
+                width={400}
+                height={300}
+                className="object-contain h-full w-full"
+              />
+            </div>
+          </div>
+        </motion.div>
 
-          {/* Reception - Bottom Right */}
-          <motion.div
-            initial={{ opacity: 0, x: 100, y: 0 }}
-            whileInView={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-            viewport={{ once: false, amount: 0.3 }}
-            className="absolute bottom-[7%] right-[15%] md:right-[20%] md:bottom-[10%] lg:right-[25%] xl:right-[30%] z-10"
-          >
-            <div className=" backdrop-blur-sm rounded-lg p-4 shadow-lg text-center">
-              <div className="text-2xl lg:text-3xl xl:text-4xl font-bold text-amber-800 mb-1">
+        {/* Second Row: Barn image and Stodola text */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: false, amount: 0.3 }}
+          className="flex flex-row items-center justify-between gap-2 sm:gap-4 lg:gap-8"
+        >
+          {/* Barn Image */}
+          <div className="flex-1 flex justify-center lg:justify-start h-[200px] lg:h-[300px] w-full lg:w-auto">
+            <div className="relative w-full max-w-[250px] sm:max-w-[250px] md:max-w-md lg:max-w-lg h-full">
+              <Image
+                src="/images/plan/barn.png"
+                alt="Barn"
+                width={400}
+                height={300}
+                className="object-contain h-full w-full"
+              />
+            </div>
+          </div>
+          
+          {/* Stodola Text */}
+          <div className="flex-1 flex items-center justify-center lg:justify-end h-[200px] lg:h-[300px]">
+          <div className="text-center lg:text-left px-4 sm:px-6 lg:px-0">
+          <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-amber-800 mb-2 lg:mb-4">
                 17:30
               </div>
-              <div className="text-lg lg:text-xl xl:text-2xl text-amber-700 font-medium">
+              <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-amber-700 font-medium">
                 STODOŁA RASZTÓW
               </div>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

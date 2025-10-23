@@ -58,7 +58,7 @@ export function StorySection() {
 
     return new Promise<void>((resolve) => {
       const img = new Image();
-      img.src = `/videos/envelope/frame_${String(index + 1).padStart(5, "0")}.png`;
+      img.src = `/videos/envelope/frame_${String(index + 1).padStart(5, "0")}.avif`;
       
       img.onload = () => {
         setImages((prev) => {
