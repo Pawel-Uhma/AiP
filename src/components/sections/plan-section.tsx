@@ -18,13 +18,13 @@ export function PlanSection() {
           {/* Parafia Text */}
           <div className="flex-1 flex items-center justify-center lg:justify-start h-[200px] lg:h-[300px]">
             <div className="text-center lg:text-left px-4 sm:px-6 lg:px-0">
-              <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-amber-800 mb-2 lg:mb-4">
-                15:30 - 16:30
-              </div>
-              <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-amber-700 font-medium">
-                PARAFIA PW. MATKI BOŻEJ<br />
-                KRÓLOWEJ POLSKI
-              </div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-amber-800 mb-2 lg:mb-4 font-pacifico">
+                  15:30 - 16:30
+                </div>
+                <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-amber-700 font-medium font-pacifico">
+                  PARAFIA PW. MATKI BOŻEJ<br />
+                  KRÓLOWEJ POLSKI
+                </div>
             </div>
           </div>
           
@@ -65,11 +65,11 @@ export function PlanSection() {
           
           {/* Stodola Text */}
           <div className="flex-1 flex items-center justify-center lg:justify-end h-[200px] lg:h-[300px]">
-          <div className="text-center lg:text-left px-4 sm:px-6 lg:px-0">
-          <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-amber-800 mb-2 lg:mb-4">
+            <div className="text-center lg:text-left px-4 sm:px-6 lg:px-0">
+            <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-amber-800 mb-2 lg:mb-4 font-pacifico">
                 17:30
               </div>
-              <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-amber-700 font-medium">
+              <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-amber-700 font-medium font-pacifico">
                 STODOŁA RASZTÓW
               </div>
             </div>

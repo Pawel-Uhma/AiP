@@ -15,10 +15,11 @@ export default function Home() {
       <HeroSection />
       <StorySection />
       <PlanSection />
-      <RSVPSection />
+
       <RedSection />
       <BlueSection />
       <GreenSection />
+      <RSVPSection />
       <Footer />
     </main>
   );

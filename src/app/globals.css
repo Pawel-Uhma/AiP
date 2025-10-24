@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 :root {
   --font-poppins: 'Poppins', system-ui, sans-serif;
   --font-lora: 'Lora', Georgia, serif;
@@ -78,6 +79,10 @@ body {
 
 .font-bodoni {
   font-family: "Bodoni Moda", serif;
+}
+
+.font-pacifico {
+  font-family: "Pacifico", cursive;
 }
 
 html {
